@@ -1,6 +1,7 @@
+import 'package:fpdart/fpdart.dart';
 import '../model/character_model.dart';
 
 abstract class CharacterService {
-  Future<List<Character>?> getCharacters(int? page);
-  Future<Character?> getCharacterDetails(int id);
+  Future<Either<FormatException, List<Character>?>> getCharacters(int? page);
+  Future<Either<FormatException, Character?>> getCharacterDetails(int id);
 }
