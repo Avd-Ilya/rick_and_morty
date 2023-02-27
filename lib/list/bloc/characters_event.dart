@@ -9,3 +9,11 @@ abstract class CharactersEvent extends Equatable {
 }
 
 class NeedCharacters extends CharactersEvent {}
+
+class CharactersShouldShowDetails extends CharactersEvent {
+  const CharactersShouldShowDetails({required this.characterId});
+  final int characterId;
+
+  @override
+  List<Object?> get props => [characterId];
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/list/bloc/characters_bloc.dart';
+import 'package:rick_and_morty/service/character_service_impl.dart';
 import 'list/page/characters_page.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CharactersBloc()..add(NeedCharacters()),
+      create: (context) => CharactersBloc(CharacterServiceImpl())..add(NeedCharacters()),
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,

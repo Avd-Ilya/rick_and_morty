@@ -119,6 +119,20 @@ class Character extends Equatable {
         "created": created.toIso8601String(),
       };
 
+  Character.empty()
+      : id = 1,
+        name = '',
+        status = '', 
+        species = '',
+        type = '', 
+        gender = '',
+        origin = Location.empty(),
+        location = Location.empty(),
+        image = '',
+        episode = [],
+        url = '',
+        created = DateTime(1);
+
   @override
   List<Object?> get props => [id, name];
 }
@@ -141,4 +155,6 @@ class Location {
         "name": name,
         "url": url,
       };
+
+  Location.empty() : name = '', url = '';
 }

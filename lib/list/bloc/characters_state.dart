@@ -29,3 +29,11 @@ class CharactersError extends CharactersState {
   @override
   List<Object?> get props => [message];
 }
+
+class CharactersShowDetails extends CharactersState {
+  const CharactersShowDetails({required this.characterId});
+  final int characterId;
+
+  @override
+  List<Object?> get props => [characterId];
+}

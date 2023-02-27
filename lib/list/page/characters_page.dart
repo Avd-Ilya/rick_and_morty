@@ -62,15 +62,18 @@ class _CharactersPageState extends State<CharactersPage> {
                     padding: const EdgeInsets.all(5),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return CharacterDetailsPage(
-                                cahracterId: characters[index].id,
-                              );
-                            },
-                          ),
-                        );
+                        context.read<CharactersBloc>().add(
+                            CharactersShouldShowDetails(
+                                characterId: characters[index].id));
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //     builder: (context) {
+                        //       return CharacterDetailsPage(
+                        //         cahracterId: characters[index].id,
+                        //       );
+                        //     },
+                        //   ),
+                        // );
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -129,6 +132,21 @@ class _CharactersPageState extends State<CharactersPage> {
               return const Center(
                 child: Text('Data loading error!'),
               );
+            }
+            if (state is CharactersShowDetails) {
+              Future.delayed(Duration.zero, () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CharacterDetailsPage(
+                          cahracterId: state.characterId);
+                    },
+                  ),
+                ).then((_) {
+                  context.read<CharactersBloc>().add(NeedCharacters());
+                });
+              });
             }
             return Container();
           },
